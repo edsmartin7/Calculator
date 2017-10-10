@@ -12,66 +12,84 @@ public class MainActivity extends AppCompatActivity {
     private String first;
     private String second;
     private String operand;
-    private String result;
+    private int result;
+
+    private Button addition;
+    private Button subtraction;
+    private Button multiplication;
+    private Button division;
+    private Button enter;
+    private Button clear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //calculate();
+
     }
 
-    public void calculate(){
+
+    private void calculate(){
 
         final EditText input = (EditText) findViewById(R.id.user_input);
 
-        Button addition = (Button) findViewById(R.id.add);
+        addition = (Button) findViewById(R.id.add);
         addition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                first = (String) input.getText();
+                first = input.getText().toString();
                 operand = addition.getText().toString();
                 input.setText(null);
             }
         });
 
-        final Button subtraction = (Button) findViewById(R.id.subtract);
+        subtraction = (Button) findViewById(R.id.subtract);
         subtraction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                first = (String) input.getText();
+                first = input.getText().toString();
                 operand = subtraction.getText().toString();
                 input.setText(null);
             }
         });
 
-        final Button multiplication = (Button) findViewById(R.id.multiply);
+        multiplication = (Button) findViewById(R.id.multiply);
         multiplication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                first = (String) input.getText();
+                first = input.getText().toString();
                 operand = multiplication.getText().toString();
                 input.setText(null);
             }
         });
 
-        final Button division = (Button) findViewById(R.id.divide);
+        division = (Button) findViewById(R.id.divide);
         division.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                first = (String) input.getText();
+                first = input.getText().toString();
                 operand = division.getText().toString();
                 input.setText(null);
             }
         });
 
-        Button enter = (Button) findViewById(R.id.enter);
+        enter = (Button) findViewById(R.id.enter);
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                second = (String) input.getText();
-                result = MathOperators.operate(first, result, second);
+                second = input.getText().toString();
+                result = MathOperators.operate(first, operand, second);
                 input.setText(null);
+            }
+        });
+
+        clear = (Button) findViewById(R.id.clear);
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
 
@@ -79,5 +97,6 @@ public class MainActivity extends AppCompatActivity {
         answer.setText(result);
 
     }
+
 
 }

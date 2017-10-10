@@ -3,7 +3,7 @@ package com.example.emartin.calculator;
 
 public class MathOperators {
 
-    public int operate(String first, String operand, String second) {
+    public static int operate(String first, String operand, String second) {
 
         int num1 = Integer.parseInt(first);
         int num2 = Integer.parseInt(second);
