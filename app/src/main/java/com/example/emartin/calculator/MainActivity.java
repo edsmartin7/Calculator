@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+//use expression builder library
 public class MainActivity extends AppCompatActivity {
 
     private String first;
@@ -20,22 +21,25 @@ public class MainActivity extends AppCompatActivity {
     private Button division;
     private Button enter;
     private Button clear;
+    private EditText input;
+    private TextView answer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //calculate();
 
-    }
-
-
-    private void calculate(){
-
-        final EditText input = (EditText) findViewById(R.id.user_input);
-
+        input = (EditText) findViewById(R.id.user_input);
         addition = (Button) findViewById(R.id.add);
+        subtraction = (Button) findViewById(R.id.subtract);
+        multiplication = (Button) findViewById(R.id.multiply);
+        division = (Button) findViewById(R.id.divide);
+        enter = (Button) findViewById(R.id.enter);
+        clear = (Button) findViewById(R.id.clear);
+        answer = (TextView)findViewById(R.id.answer);
+
+
         addition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        subtraction = (Button) findViewById(R.id.subtract);
+
         subtraction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        multiplication = (Button) findViewById(R.id.multiply);
+
         multiplication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        division = (Button) findViewById(R.id.divide);
         division.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,17 +78,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        enter = (Button) findViewById(R.id.enter);
+
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 second = input.getText().toString();
                 result = MathOperators.operate(first, operand, second);
                 input.setText(null);
+                calculate(view);
             }
         });
 
-        clear = (Button) findViewById(R.id.clear);
+
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,10 +97,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        TextView answer = (TextView)findViewById(R.id.answer);
-        answer.setText(result);
 
     }
 
+    private void calculate(View view) {
+        //if number, add to stack
+        //if char, add to stack
+        //if enter, calculate stack
+        //if clear, clear stack
+        int addendOne = Integer.parseInt(first);
+        int addendTwo = Integer.parseInt(second);
+
+        switch (operand) {
+            case "+":
+                result = addendOne + addendTwo;
+                break;
+            case "-":
+                result = addendOne - addendTwo;
+                break;
+            case "*":
+                result = addendOne * addendTwo;
+                break;
+            case "/":
+                result = addendOne / addendTwo;
+                break;
+            default:
+                result = 0;
+        }
+
+        answer.setText(result);
+    }
 
 }
