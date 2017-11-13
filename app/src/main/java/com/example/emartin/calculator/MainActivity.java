@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        
+
         subtraction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
